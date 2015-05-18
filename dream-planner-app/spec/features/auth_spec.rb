@@ -5,7 +5,7 @@ feature "the signup process" do
 
   it "has a new user page" do
     visit("users/new")
-    expect(page).to have_content("Sign Up")
+    expect(page).to have_button("Sign Up")
   end
 
   feature "signing up a user" do
