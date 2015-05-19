@@ -11,6 +11,9 @@
 #
 
 class User < ActiveRecord::Base
+  include Commentable
+
+
 
   attr_reader :password
   validates :username, uniqueness: true
@@ -25,6 +28,7 @@ class User < ActiveRecord::Base
     foreign_key: :owner_id,
     primary_key: :id
   )
+  
 
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)

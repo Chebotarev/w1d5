@@ -1,6 +1,8 @@
 class Goal < ActiveRecord::Base
-
+  include Commentable
   validates :content, :status, :owner, :title, presence: true
+
+  
 
   belongs_to(
     :owner,
