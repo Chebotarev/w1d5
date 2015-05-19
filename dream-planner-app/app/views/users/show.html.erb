@@ -9,6 +9,26 @@
           <%= goal.content %> <br>
           <%= button_to "Edit", edit_goal_url, method: :get %>
           <%= button_to "Delete", goal_url(goal), method: :delete if current_user == goal.owner %>
+          <% if goal.comments %>
+            <ul>
+              <% goal.comments.each do |goal_comment| %>
+                <li><%= goal_comment.body %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </li>
+      <% end %>
+  </ul>
+<% end %><br>
+
+User Comments
+<% if @user_comments %>
+  <ul>
+    <% @user_comments.each do |user_comment| %>
+        <li>
+          <%= user_comment.body %> <br>
+          <%= button_to "Edit", edit_comment_url, method: :get %>
+          <%= button_to "Delete", comment_url(user_comment), method: :delete if current_user == user_comment.author %>
         </li>
       <% end %>
     <% end %>
