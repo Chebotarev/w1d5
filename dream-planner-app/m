@@ -1,0 +1,44 @@
+ not have a delete button for other user (FAILED - 2)
+
+editing a goal
+  has an edit goal page
+  has errors if updating fails (FAILED - 3)
+  has a prefilled private/public field (FAILED - 4)
+  includes a pre-filled content field (FAILED - 5)
+
+reading a goal
+  only shows public goals for other user (FAILED - 6)
+  has a user show page with all of the user's goals
+  has an edit button for each goal
+
+Failures:
+
+  1) creating a goal has the public radio button checked as default
+     Failure/Error: expect(find_field('goal-public')).to be_checked
+     Capybara::ElementNotFound:
+       Unable to find field "goal-public"
+     # ./spec/features/goals_spec.rb:28:in `block (2 levels) in <top
+     # (required)>'
+
+  2) deleting a goal does not have a delete button for other user
+     Failure/Error: expect(page).to_not have_button('Delete')
+       expected not to find button "Delete", found 1 match: ""
+     # ./spec/features/goals_spec.rb:127:in `block (2 levels) in <top
+     # (required)>'
+
+  3) editing a goal has errors if updating fails
+     Failure/Error: expect(page).to have_content("Content can't be
+blank")
+       expected to find text "Content can't be blank" in "vida Log Out
+Title Content Status Public Private"
+     # ./spec/features/goals_spec.rb:104:in `block (2 levels) in <top
+     # (required)>'
+
+  4) editing a goal has a prefilled private/public field
+     Failure/Error: expect(find_field('goal-private')).to be_checked
+     Capybara::ElementNotFound:
+       Unable to find field "goal-private"
+     # ./spec/features/goals_spec.rb:99:in `block (2 levels) in <top
+     # (required)>'
+
+  5) editing a goal includes a pre-filled content field

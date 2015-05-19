@@ -1,0 +1,16 @@
+<h1> <%= @user.username %>'s Show page</h1>
+
+<% if @goals %>
+  <ul>
+    <% @goals.each do |goal| %>
+      <% unless goal.status == "private" && current_user != goal.owner %>
+        <li>
+          <%= goal.title %> <br>
+          <%= goal.content %> <br>
+          <%= button_to "Edit", edit_goal_url, method: :get %>
+          <%= button_to "Delete", goal_url(goal), method: :delete if current_user == goal.owner %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

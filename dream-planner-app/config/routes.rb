@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'users#index'
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show]
+  resources :goals, except: [:show, :index]
 
   resource :session, only: [:new, :create, :destroy]
 

@@ -11,7 +11,7 @@ feature "the signup process" do
   feature "signing up a user" do
 
     it "shows username on the homepage after signup" do
-      user = create(:user)
+      user = build(:user)
       sign_up_as(user)
       expect(page).to have_content(user.username)
     end
@@ -23,7 +23,7 @@ end
 feature "logging in" do
 
   it "shows username on the homepage after login" do
-    user = create(:user)
+    user = build(:user)
     sign_up_as(user)
     log_out
     sign_in_as(user)
@@ -33,8 +33,8 @@ feature "logging in" do
 end
 
 feature "logging out" do
+  let(:user) { build(:user) }
   before(:each) do
-    user = create(:user)
     sign_up_as(user)
     log_out
   end

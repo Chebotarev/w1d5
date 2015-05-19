@@ -1,0 +1,28 @@
+<% form_action = goal.persisted? ? goal_url(goal) : goals_url %>
+<% form_method = goal.persisted? ? :patch : :post %>
+<% button_name = goal.persisted? ? "Edit Goal" : "Create New Goal" %>
+
+
+<form action="<%= form_action %>" method="post">
+  <input type="hidden" name="_method" value="<%= form_method %>">
+
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+
+  <label for="goal-title">Title</label>
+  <input type="text" name="goal[title]" id="goal-title" value="<%= goal.title %>">
+
+  <label for="goal-content">Content</label>
+  <textarea name="goal[content]" id="goal-content" rows="8" cols="40"><%= goal.content %></textarea>
+
+  <label for="goal-status">Status</label>
+    <label>Public
+      <input type="radio" id="goal-public" name="goal[status]" value="public" <%="checked" if goal.status == "public" %>>
+    </label>
+
+    <label>Private
+      <input type="radio" id="goal-private" name="goal[status]" value="private" <%="checked" if goal.status == "private" %>>
+    </label>
+
+  <input type="submit" name="name" value="<%= button_name %>">
+
+</form>
